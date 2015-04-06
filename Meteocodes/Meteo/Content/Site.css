@@ -1,0 +1,16 @@
+.panel-accordion .panel-heading {
+    padding: 0;
+}
+.panel-accordion .panel-heading a {
+    display: block;
+    padding: 10px 15px;
+}
+
+.panel-title:hover {
+     cursor: pointer;
+}
+
+.night 
+{
+    background-color: Blue;
+}

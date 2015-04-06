@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="Codes" assembly="Codes">
+  <class name="Meteocode" table="Meteocodes">
+    <id name="ID" unsaved-value="0">
+      <column name="ID" not-null="true" />
+      <generator class="identity"/>
+    </id>
+    <property name="created_at" />
+    <property name="updated_at" />
+    <property name="MiMiMiMi" />
+    <property name="YY" />
+    <property name="GG" />
+    <property name="Idd" />
+    <property name="II" />
+    <property name="iii" />
+    <property name="LaLaLa" />
+    <property name="L0L0L0L0" />
+    <property name="Qc" />
+    <property name="MMM" />
+    <property name="UL0" />
+    <property name="ULa" />
+
+  </class>
+</hibernate-mapping>
