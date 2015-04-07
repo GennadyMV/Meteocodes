@@ -31,7 +31,7 @@ namespace Codes.Domain
             Configuration cfg = new Configuration();
             cfg.Configure("hibernate.cfg.xml");
 
-            cfg.AddAssembly(typeof(Codes.Meteocode).Assembly);
+//            cfg.AddAssembly(typeof(Codes.Meteocode).Assembly);
 
             NHibernate.Tool.hbm2ddl.SchemaUpdate schemaUpdate
                 = new NHibernate.Tool.hbm2ddl.SchemaUpdate(cfg);

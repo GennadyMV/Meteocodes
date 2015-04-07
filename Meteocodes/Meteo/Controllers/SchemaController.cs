@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Meteo.Common;
+//using Meteo.Common;
+using Codes.Common;
 
 namespace Meteo.Controllers
 {
@@ -17,7 +18,8 @@ namespace Meteo.Controllers
             try
             {
                 ViewBag.Msg = "Схема успешно обновлена";
-                NHibernateHelper.UpdateSchema();
+                Codes.Common.NHibernateHelper.UpdateSchema();
+                //Domain.Init();
             }
             catch (Exception ex)
             {

@@ -57,6 +57,8 @@
     <Compile Include="Models\Measurement.cs" />
     <Compile Include="Models\Station.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\MeasurementRepository.cs" />
+    <Compile Include="Repositories\StationRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
