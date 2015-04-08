@@ -38,9 +38,9 @@ namespace Meteo.Controllers
                         Measurement measurement = (new Measurement()).GetByDateUTC(station, DD, GG);
                         if (measurement != null)
                         {
-                            meas.surface_pressure = measurement.surface_pressure.ToString();
-                            meas.surface_temperature = String.Format("{0, 6}",     measurement.surface_temperature);
-                            meas.surface_dewpoint = String.Format("{0, 4}",        measurement.surface_dewpoint);
+                            meas.surface_pressure = String.Format("{0, 5:N0}", measurement.surface_pressure);
+                            meas.surface_temperature = String.Format("{0, 6:N1}",     measurement.surface_temperature);
+                            meas.surface_dewpoint = String.Format("{0, 4:N1}",        measurement.surface_dewpoint);
                             meas.surface_wind = String.Format("{0, 4}",            measurement.surface_wind);
                             meas.surface_windspeed = String.Format("{0, 4}",       measurement.surface_windspeed);
                         }

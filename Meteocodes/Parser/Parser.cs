@@ -46,8 +46,8 @@ namespace Parser
             
             // срок наблюдения
             int count = station.Measurements.Count(p => p.GG == GG && p.DD == DD);
-            Measurement meas = null;
-            if (count == 0)
+            Measurement meas = (new Measurement()).GetByDateUTC(station, DD, GG);
+            if (meas == null)
             {
                 meas = new Measurement();
                 meas.DD = DD;
@@ -55,10 +55,6 @@ namespace Parser
                 meas.Station = station;
                 meas.Save();
 
-            }
-            else
-            {
-                meas = station.Measurements.Where(p => p.GG == GG && p.DD == DD).ToList()[0];
             }
 
             // Давление на поверхности земли
@@ -84,7 +80,7 @@ namespace Parser
             dis = rawArray[index];
             int T0T0 = Convert.ToInt32(dis.Substring(0, 2));
             int Ta0 = Convert.ToInt32(dis.Substring(2, 1));
-            meas.surface_temperature = T0T0;
+            meas.surface_temperature = (float)T0T0;
             switch (Ta0)
             {
                 case 0:
@@ -92,14 +88,14 @@ namespace Parser
                 case 4:
                 case 6:
                 case 8:
-                    meas.surface_temperature += (float)(T0T0 + Ta0 * 0.1);
+                    meas.surface_temperature += (float)(Ta0 * 0.1);
                     break;
                 case 1:
                 case 3:
                 case 5:
                 case 7:
                 case 9:
-                    meas.surface_temperature += (float)(T0T0 + Ta0 * (-1) * 0.1);
+                    meas.surface_temperature += (float)(Ta0 * (-1) * 0.1);
                     break;
             }
             string dewpoint = dis.Substring(3, 2);
@@ -142,7 +138,7 @@ namespace Parser
             if (_windspeed >= 500)
             {
                 _windspeed -= 500;
-                meas.surface_wind += meas.surface_wind + 5;
+                meas.surface_wind += 5;
             }
             meas.surface_windspeed = _windspeed;
             

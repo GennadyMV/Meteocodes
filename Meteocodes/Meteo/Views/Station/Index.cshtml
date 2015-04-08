@@ -3,17 +3,18 @@
 @using Codes.Models
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Аэрология";
 }
 
 <h2>Аэрологические станции</h2>
 
-<table class="table">
+<table class="table table-striped tableWithFloatingHeader">
     <thead>
         <tr>
             <th>Станция</th>
             <th class="text-right">Давление (гПа)</th>
             <th class="text-right">Температура (&degС)</th>
+            <th class="text-right">Дефицит точки росы (&degС)</th>
             <th class="text-right">Ветер (град)</th>
             <th class="text-right">Скорость (м/с)</th>
         </tr>
@@ -23,12 +24,100 @@
         {
             <tr>
                <td>@item.Value.station</td>    
-               <td class="text-right">@item.Value.surface_pressure</td>                
-               <td class="text-right">@item.Value.surface_temperature</td>                
-               <td class="text-right">@item.Value.surface_wind</td>                
-               <td class="text-right">@item.Value.surface_windspeed</td>                
+               @if (@item.Value.surface_pressure != @item.Value.no_data)
+               {
+                   <td class="text-right">@item.Value.surface_pressure</td>
+               }
+               else
+               {
+                   <td class="text-right"><em>@item.Value.no_data</em></td>
+               }
+               @if (@item.Value.surface_temperature != @item.Value.no_data)
+               {
+                   <td class="text-right">@item.Value.surface_temperature</td>
+               }
+               else
+               {
+                   <td class="text-right"><em>@item.Value.no_data</em></td>
+               }
+
+               @if (@item.Value.surface_dewpoint != @item.Value.no_data)
+               {
+                   <td class="text-right">@item.Value.surface_dewpoint</td>
+               }
+               else
+               {
+                   <td class="text-right"><em>@item.Value.no_data</em></td>
+               }
+
+               @if (@item.Value.surface_wind != @item.Value.no_data)
+               {
+                   <td class="text-right">@item.Value.surface_wind</td>
+               }
+               else
+               {
+                   <td class="text-right"><em>@item.Value.no_data</em></td>
+               }
+
+               @if (@item.Value.surface_windspeed != @item.Value.no_data)
+               {
+                   <td class="text-right">@item.Value.surface_windspeed</td>
+               }
+               else
+               {
+                   <td class="text-right"><em>@item.Value.no_data</em></td>
+               }
+
             </tr>
         }        
     </tbody>
 </table>
 
+<script type="text/javascript">
+    function UpdateTableHeaders() {
+        $("div.divTableWithFloatingHeader").each(function () {
+            var originalHeaderRow = $(".tableFloatingHeaderOriginal", this);
+            var floatingHeaderRow = $(".tableFloatingHeader", this);
+            var offset = $(this).offset();
+            var scrollTop = $(window).scrollTop();
+            if ((scrollTop > offset.top) && (scrollTop < offset.top + $(this).height())) {
+                floatingHeaderRow.css("visibility", "visible");
+                floatingHeaderRow.css("top", Math.min(scrollTop - offset.top, $(this).height() - floatingHeaderRow.height()) + "px");
+
+                // Copy cell widths from original header
+                $("th", floatingHeaderRow).each(function (index) {
+                    var cellWidth = $("th", originalHeaderRow).eq(index).css('width');
+                    $(this).css('width', cellWidth);
+                });
+
+                // Copy row width from whole table
+                floatingHeaderRow.css("width", $(this).css("width"));
+            }
+            else {
+                floatingHeaderRow.css("visibility", "hidden");
+                floatingHeaderRow.css("top", "0px");
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        $("table.tableWithFloatingHeader").each(function () {
+            $(this).wrap("<div class=\"divTableWithFloatingHeader\" style=\"position:relative\"></div>");
+
+            var originalHeaderRow = $("tr:first", this)
+            originalHeaderRow.before(originalHeaderRow.clone());
+            var clonedHeaderRow = $("tr:first", this)
+
+            clonedHeaderRow.addClass("tableFloatingHeader");
+            clonedHeaderRow.css("position", "absolute");
+            clonedHeaderRow.css("top", "0px");
+            clonedHeaderRow.css("left", $(this).css("margin-left"));
+            clonedHeaderRow.css("visibility", "hidden");
+
+            originalHeaderRow.addClass("tableFloatingHeaderOriginal");
+        });
+        UpdateTableHeaders();
+        $(window).scroll(UpdateTableHeaders);
+        $(window).resize(UpdateTableHeaders);
+    });
+    </script>
