@@ -72,6 +72,7 @@
     </Compile>
     <Compile Include="Models\Measurement.cs" />
     <Compile Include="Models\Station.cs" />
+    <Compile Include="Models\ViewMeasurement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\StationRepository.cs" />
   </ItemGroup>
@@ -275,7 +276,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>1875</DevelopmentServerPort>
+          <DevelopmentServerPort>2170</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

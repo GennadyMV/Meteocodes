@@ -12,7 +12,9 @@ namespace Parser
     {
         static public void Razdel01(string rawData)
         {
-            
+
+            rawData = rawData.Replace("  ", " ");
+
             int index = 0;
             string[] rawArray = rawData.Split(' ');
             //theCode.MiMiMiMi = rawArray[index];
@@ -100,8 +102,49 @@ namespace Parser
                     meas.surface_temperature += (float)(T0T0 + Ta0 * (-1) * 0.1);
                     break;
             }
-            //int D0D0 = Convert.ToInt32(dis.Substring(3, 2));
+            string dewpoint = dis.Substring(3, 2);
+            if (dewpoint == "//")
+            {
+                dewpoint = "-999";
+            }
+            int surface_dewpoint = Convert.ToInt32(dewpoint);
+            meas.surface_dewpoint = (float) surface_dewpoint;
+            if (0 <= surface_dewpoint && surface_dewpoint <= 50)
+            {
+                meas.surface_dewpoint = (float)((float)surface_dewpoint * 0.1);
+            }
+            if (56 <= surface_dewpoint && surface_dewpoint <= 99)
+            {
+                meas.surface_dewpoint = (float)((float)surface_dewpoint - 50);
+            }
             
+            meas.Update();
+
+
+
+            // Ветер
+            index++;
+            dis = rawArray[index];
+            string wind = dis.Substring(0, 2);
+            if (wind == "//")
+            {
+                wind = "-999";
+            }
+            string windspeed = dis.Substring(2, 3);
+            if (wind == "///")
+            {
+                wind = "-999";
+            }
+
+            int _wind = Convert.ToInt32(wind);
+            int _windspeed = Convert.ToInt32(windspeed);
+            meas.surface_wind = _wind * 10;
+            if (_windspeed >= 500)
+            {
+                _windspeed -= 500;
+                meas.surface_wind += meas.surface_wind + 5;
+            }
+            meas.surface_windspeed = _windspeed;
             
             meas.Update();
 

@@ -5,6 +5,7 @@ using System.Text;
 using Codes.Common;
 using NHibernate;
 using NHibernate.Criterion;
+using Codes.Models;
 
 namespace Codes.Repositories
 {
@@ -68,6 +69,17 @@ namespace Codes.Repositories
                     criteria.AddOrder(Order.Desc("ID"));
                     return criteria.List<Codes.Models.Measurement>();
                 }
+            }
+
+            public Codes.Models.Measurement GetByDate(Station station, int DD, int GG)
+            {
+                using (ISession session = NHibernateHelper.OpenSession())
+                
+                    return session.CreateCriteria<Codes.Models.Measurement>()
+                        .Add(Restrictions.Eq("Station", station))
+                        .Add(Restrictions.Eq("GG", GG))
+                        .Add(Restrictions.Eq("DD", DD)).UniqueResult<Codes.Models.Measurement>();
+                
             }
 
             #endregion

@@ -18,6 +18,9 @@ namespace Codes.Models
         public virtual float surface_temperature { get; set; }
         public virtual float surface_dewpoint { get; set; }
         public virtual Station Station { get; set; }
+        public virtual int surface_wind { get; set; }
+        public virtual int surface_windspeed { get; set; }
+        public virtual int surface_windunit { get; set; }
         
         public virtual void Save()
         {
@@ -32,6 +35,12 @@ namespace Codes.Models
             IRepository<Measurement> repo = new MeasurementRepository();
             this.updated_at = DateTime.Now;
             repo.Update(this);
+        }
+
+        public virtual Measurement GetByDateUTC(Station station, int DD, int GG)
+        {
+            MeasurementRepository repo = new MeasurementRepository();
+            return repo.GetByDate(station, DD, GG);
         }
     }
 }

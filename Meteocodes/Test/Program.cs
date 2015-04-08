@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Codes.Models;
+using System.IO;
 namespace Test
 {
     class Program
@@ -10,12 +11,44 @@ namespace Test
         static void Main(string[] args)
         {
 
-            string rawData = "TTAA 01001 23078 99009 17519 11008 00126 17112 12510 92714 13304 19511 85356 15711 22010 70802 22116 27010 50522 31522 31521 40676 42524 32028 30865 56530 32542 25978 64335 32543 20113 68538 32538 15286 67136 32536 10528 71739 32538 88214 68337 32542 77278 33047=";
+            string[] filePaths = Directory.GetFiles(@"\\192.168.72.123\obmen\Zyryanov\SpecialPoints\data\2015\04", "*07042015_12.txt",
+                                         SearchOption.AllDirectories);
+            int count = 0;
+            foreach (var name in filePaths)
+            {
+                System.IO.StreamReader file = new System.IO.StreamReader(name);
+                string line;
+                while ((line = file.ReadLine()) != null)
+                {
+                    if (line.Substring(0, 4) == "TTAA")
+                    {
+                        count++; 
+                    }
+                }
 
-            
+                file.Close();
+            }
+
+            int i = 0;
+            foreach (var name in filePaths)
+            {
+                System.IO.StreamReader file = new System.IO.StreamReader(name);
+                string line;
+                while ((line = file.ReadLine()) != null)
+                {
+                    if (line.Substring(0, 4) == "TTAA")
+                    {
+                        i++;
+                        Console.WriteLine("{0} из {1}", i, count);
+                        Parser.Parser.Razdel01(line);
+                    }
+                }
+
+                file.Close();
+            }
 
 
-            Parser.Parser.Razdel01(rawData);
+            //Parser.Parser.Razdel01(rawData);
 
 
             

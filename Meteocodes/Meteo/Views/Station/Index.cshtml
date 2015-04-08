@@ -1,6 +1,34 @@
-﻿@{
+﻿@using Codes.Repositories
+@using Codes.Common
+@using Codes.Models
+
+@{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Аэрологические станции</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Станция</th>
+            <th class="text-right">Давление (гПа)</th>
+            <th class="text-right">Температура (&degС)</th>
+            <th class="text-right">Ветер (град)</th>
+            <th class="text-right">Скорость (м/с)</th>
+        </tr>
+    </thead>
+    <tbody>        
+        @foreach (KeyValuePair<string, ViewMeasurement> item in Model)
+        {
+            <tr>
+               <td>@item.Value.station</td>    
+               <td class="text-right">@item.Value.surface_pressure</td>                
+               <td class="text-right">@item.Value.surface_temperature</td>                
+               <td class="text-right">@item.Value.surface_wind</td>                
+               <td class="text-right">@item.Value.surface_windspeed</td>                
+            </tr>
+        }        
+    </tbody>
+</table>
 

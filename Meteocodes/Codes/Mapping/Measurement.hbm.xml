@@ -13,5 +13,8 @@
     <property name="surface_pressure" />
     <property name="surface_temperature" />
     <property name="surface_dewpoint" />
+    <property name="surface_wind" />
+    <property name="surface_windspeed" />
+    <property name="surface_windunit" />
   </class>
 </hibernate-mapping>
