@@ -9,7 +9,7 @@
     <property name="updated_at" />
     <property name="Name" />
     <property name="Code" />
-    <set name="Measurements" lazy="false" >
+    <set name="Measurements" >
       <key column="Station_ID"/>
       <one-to-many class="Measurement"/>
     </set>

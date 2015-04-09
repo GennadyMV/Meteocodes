@@ -6,8 +6,60 @@
     ViewBag.Title = "Аэрология";
 }
 
-<h2>Аэрологические станции</h2>
+    @if (this.IsAjax) {
+        Layout = "";
+    }
 
+
+@if (!this.IsAjax)
+{
+<div id="sandbox-container">
+            <div id="station-report-data" class="input-group date">
+                <span class="input-group-addon">Дата (UTC): </span>
+                <input type="text" value="@ViewBag.DateTime" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+            </div>
+</div>
+
+<script>
+
+    function dateChanged() {
+        $("#station-report-data-result").text("Загрузка");
+
+        var param = { DD: $('#station-report-data input').val().substring(0, 2), GG: 12 };
+
+        $.ajax({
+            cache: false,
+            data: param,
+            url: '@Url.Action("Index", "Station")',
+            success: function (data) {
+                document.getElementById("station-report-data-result").innerHTML = data;
+                UpdateTableHeadersWrap();
+            },
+            error: function (x, e, thrownError) {
+                document.getElementById("content").innerHTML = '<p>Ошибка запроса</p><p>' + thrownError + '</p>';
+            }
+            
+        });
+            
+        }
+    
+
+    $(document).ready(function() {    
+        $('#station-report-data input').datepicker({
+            todayBtn: true,
+            clearBtn: true,
+            language: "ru",
+            calendarWeeks: true,
+            autoclose: true,
+            todayHighlight: true
+        })
+        .on('changeDate', dateChanged);
+    });
+    
+</script>
+}
+
+<div id="station-report-data-result">
 <table class="table table-striped tableWithFloatingHeader">
     <thead>
         <tr>
@@ -72,7 +124,7 @@
         }        
     </tbody>
 </table>
-
+</div>
 <script type="text/javascript">
     function UpdateTableHeaders() {
         $("div.divTableWithFloatingHeader").each(function () {
@@ -100,7 +152,7 @@
         });
     }
 
-    $(document).ready(function () {
+    function UpdateTableHeadersWrap() {
         $("table.tableWithFloatingHeader").each(function () {
             $(this).wrap("<div class=\"divTableWithFloatingHeader\" style=\"position:relative\"></div>");
 
@@ -119,5 +171,9 @@
         UpdateTableHeaders();
         $(window).scroll(UpdateTableHeaders);
         $(window).resize(UpdateTableHeaders);
+    }
+
+    $(document).ready(function () {
+        UpdateTableHeadersWrap();
     });
     </script>

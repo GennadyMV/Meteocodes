@@ -24,6 +24,7 @@ namespace Meteo.Controllers
             {
                 GG = 12;
             }
+            ViewBag.DateTime = DateTime.UtcNow.AddDays(-1).ToString("dd.MM.yyyy");
 
             Dictionary<string, ViewMeasurement> MeasurementData = new Dictionary<string, ViewMeasurement>();
             foreach (var station in ((IRepository<Station>)(new StationRepository())).GetAll())

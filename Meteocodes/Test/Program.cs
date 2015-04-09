@@ -10,8 +10,8 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            
-            string[] filePaths = Directory.GetFiles(@"\\192.168.72.123\obmen\Zyryanov\SpecialPoints\data\2015\04", "*07042015_12.txt",
+        
+            string[] filePaths = Directory.GetFiles(@"\\192.168.72.123\obmen\Zyryanov\SpecialPoints\data\2015\04", "*_12.txt",
                                          SearchOption.AllDirectories);
             int count = 0;
             foreach (var name in filePaths)

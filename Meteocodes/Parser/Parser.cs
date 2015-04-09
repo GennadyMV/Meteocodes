@@ -45,7 +45,6 @@ namespace Parser
             station.Code = Code;
             
             // срок наблюдения
-            int count = station.Measurements.Count(p => p.GG == GG && p.DD == DD);
             Measurement meas = (new Measurement()).GetByDateUTC(station, DD, GG);
             if (meas == null)
             {
