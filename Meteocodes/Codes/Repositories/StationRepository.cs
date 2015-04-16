@@ -65,7 +65,7 @@ namespace Codes.Repositories
             using (ISession session = NHibernateHelper.OpenSession())
             {
                 ICriteria criteria = session.CreateCriteria(typeof(Codes.Models.Station));
-                criteria.AddOrder(Order.Desc("ID"));
+                criteria.AddOrder(Order.Asc("Code"));
                 return criteria.List<Codes.Models.Station>();
             }
         }

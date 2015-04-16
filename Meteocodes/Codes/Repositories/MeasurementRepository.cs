@@ -71,13 +71,15 @@ namespace Codes.Repositories
                 }
             }
 
-            public Codes.Models.Measurement GetByDate(Station station, int DD, int GG)
+            public Codes.Models.Measurement GetByDate(Station station, int YYYY, int MM, int DD, int GG)
             {
                 using (ISession session = NHibernateHelper.OpenSession())
                 
                     return session.CreateCriteria<Codes.Models.Measurement>()
                         .Add(Restrictions.Eq("Station", station))
                         .Add(Restrictions.Eq("GG", GG))
+                        .Add(Restrictions.Eq("YYYY", YYYY))
+                        .Add(Restrictions.Eq("MM", MM))
                         .Add(Restrictions.Eq("DD", DD)).UniqueResult<Codes.Models.Measurement>();
                 
             }

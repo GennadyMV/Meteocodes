@@ -8,6 +8,8 @@
     <property name="created_at" />
     <property name="updated_at" />
     <property name="DD" />
+    <property name="MM" />
+    <property name="YYYY" />
     <property name="GG" />
     <many-to-one name="Station" column="Station_ID" />
     <property name="surface_pressure" />
@@ -16,5 +18,82 @@
     <property name="surface_wind" />
     <property name="surface_windspeed" />
     <property name="surface_windunit" />
+  
+    <property name="surface_isobaric1000_temperature" />
+    <property name="surface_isobaric1000_geopotential" />        
+    <property name="surface_isobaric1000_dewpoint" />
+    <property name="surface_isobaric1000_wind" />
+    <property name="surface_isobaric1000_windspeed" />
+    <property name="surface_isobaric1000_windunit" />
+
+    <property name="surface_isobaric0925_temperature" />
+    <property name="surface_isobaric0925_geopotential" />        
+    <property name="surface_isobaric0925_dewpoint" />
+    <property name="surface_isobaric0925_wind" />
+    <property name="surface_isobaric0925_windspeed" />
+    <property name="surface_isobaric0925_windunit" />
+
+    <property name="surface_isobaric0850_temperature" />
+    <property name="surface_isobaric0850_geopotential" />
+    <property name="surface_isobaric0850_dewpoint" />
+    <property name="surface_isobaric0850_wind" />
+    <property name="surface_isobaric0850_windspeed" />
+    <property name="surface_isobaric0850_windunit" />
+
+    <property name="surface_isobaric0700_temperature" />
+    <property name="surface_isobaric0700_geopotential" />
+    <property name="surface_isobaric0700_dewpoint" />
+    <property name="surface_isobaric0700_wind" />
+    <property name="surface_isobaric0700_windspeed" />
+    <property name="surface_isobaric0700_windunit" />
+
+    <property name="surface_isobaric0500_temperature" />
+    <property name="surface_isobaric0500_geopotential" />
+    <property name="surface_isobaric0500_dewpoint" />
+    <property name="surface_isobaric0500_wind" />
+    <property name="surface_isobaric0500_windspeed" />
+    <property name="surface_isobaric0500_windunit" />
+
+    <property name="surface_isobaric0400_temperature" />
+    <property name="surface_isobaric0400_geopotential" />
+    <property name="surface_isobaric0400_dewpoint" />
+    <property name="surface_isobaric0400_wind" />
+    <property name="surface_isobaric0400_windspeed" />
+    <property name="surface_isobaric0400_windunit" />
+
+    <property name="surface_isobaric0300_temperature" />
+    <property name="surface_isobaric0300_geopotential" />
+    <property name="surface_isobaric0300_dewpoint" />
+    <property name="surface_isobaric0300_wind" />
+    <property name="surface_isobaric0300_windspeed" />
+    <property name="surface_isobaric0300_windunit" />
+
+    <property name="surface_isobaric0250_temperature" />
+    <property name="surface_isobaric0250_geopotential" />
+    <property name="surface_isobaric0250_dewpoint" />
+    <property name="surface_isobaric0250_wind" />
+    <property name="surface_isobaric0250_windspeed" />
+    <property name="surface_isobaric0250_windunit" />
+
+    <property name="surface_isobaric0200_temperature" />
+    <property name="surface_isobaric0200_geopotential" />
+    <property name="surface_isobaric0200_dewpoint" />
+    <property name="surface_isobaric0200_wind" />
+    <property name="surface_isobaric0200_windspeed" />
+    <property name="surface_isobaric0200_windunit" />
+
+    <property name="surface_isobaric0150_temperature" />
+    <property name="surface_isobaric0150_geopotential" />
+    <property name="surface_isobaric0150_dewpoint" />
+    <property name="surface_isobaric0150_wind" />
+    <property name="surface_isobaric0150_windspeed" />
+    <property name="surface_isobaric0150_windunit" />
+
+    <property name="surface_isobaric0100_temperature" />
+    <property name="surface_isobaric0100_geopotential" />
+    <property name="surface_isobaric0100_dewpoint" />
+    <property name="surface_isobaric0100_wind" />
+    <property name="surface_isobaric0100_windspeed" />
+    <property name="surface_isobaric0100_windunit" />
   </class>
 </hibernate-mapping>

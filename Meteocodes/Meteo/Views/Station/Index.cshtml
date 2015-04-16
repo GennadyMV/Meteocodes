@@ -25,7 +25,7 @@
     function dateChanged() {
         $("#station-report-data-result").text("Загрузка");
 
-        var param = { DD: $('#station-report-data input').val().substring(0, 2), GG: 12 };
+        var param = { YYYY: $('#station-report-data input').val().substring(6, 10), MM: $('#station-report-data input').val().substring(3, 5), DD: $('#station-report-data input').val().substring(0, 2), GG: 12 };
 
         $.ajax({
             cache: false,
@@ -66,9 +66,10 @@
             <th>Станция</th>
             <th class="text-right">Давление (гПа)</th>
             <th class="text-right">Температура (&degС)</th>
-            <th class="text-right">Дефицит точки росы (&degС)</th>
+            <th class="text-right">Точка росы (&degС)</th>
             <th class="text-right">Ветер (град)</th>
             <th class="text-right">Скорость (м/с)</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>        
@@ -120,8 +121,542 @@
                    <td class="text-right"><em>@item.Value.no_data</em></td>
                }
 
+               <td>
+                    <input  data-toggle="collapse" data-target="#collapse_surface_isobaric_@(item.Value.station)" class="accordion-toggle btn btn-primary" type="button" value="Уровни" >
+               </td>
             </tr>
-        }        
+            
+            <tr>
+                <td colspan="7" class="hiddenRow">     
+                    <div class="container-fluid">
+                        <div class="accordian-body collapse" id="collapse_surface_isobaric_@(item.Value.station)">
+                            <p>
+                                <div class="panel panel-default">
+                                  <div id="panel-body-@(item.Value.station)" class="panel-body">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-right">Изобарическая поверхность (гПа)</th>
+                                                    <th class="text-right">Геопотенциал (гп.м.)</th>
+                                                    <th class="text-right">Температура (&degС)</th>
+                                                    <th class="text-right">Дефицит точки росы (&degС)</th>
+                                                    <th class="text-right">Ветер (град)</th>
+                                                    <th class="text-right">Скорость (м/с)</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-right">1000</td>
+                                                    @if (@item.Value.surface_isobaric1000_geopotential != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric1000_geopotential</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+
+                                                       @if (@item.Value.surface_isobaric1000_temperature != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric1000_temperature</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                       @if (@item.Value.surface_isobaric1000_dewpoint != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric1000_dewpoint</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                       @if (@item.Value.surface_isobaric1000_wind != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric1000_wind</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                       @if (@item.Value.surface_isobaric1000_windspeed != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric1000_windspeed</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="text-right">925</td>
+                                                    @if (@item.Value.surface_isobaric0925_geopotential != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0925_geopotential</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+
+                                                       @if (@item.Value.surface_isobaric0925_temperature != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0925_temperature</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                       @if (@item.Value.surface_isobaric0925_dewpoint != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0925_dewpoint</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                       @if (@item.Value.surface_isobaric0925_wind != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0925_wind</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                       @if (@item.Value.surface_isobaric0925_windspeed != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0925_windspeed</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="text-right">850</td>
+                                                    @if (@item.Value.surface_isobaric0850_geopotential != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0850_geopotential</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+
+                                                       @if (@item.Value.surface_isobaric0850_temperature != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0850_temperature</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                       @if (@item.Value.surface_isobaric0850_dewpoint != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0850_dewpoint</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                       @if (@item.Value.surface_isobaric0850_wind != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0850_wind</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                       @if (@item.Value.surface_isobaric0850_windspeed != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0850_windspeed</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="text-right">700</td>
+                                                    @if (@item.Value.surface_isobaric0700_geopotential != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0700_geopotential</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+
+                                                       @if (@item.Value.surface_isobaric0700_temperature != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0700_temperature</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                       @if (@item.Value.surface_isobaric0700_dewpoint != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0700_dewpoint</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                       @if (@item.Value.surface_isobaric0700_wind != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0700_wind</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                       @if (@item.Value.surface_isobaric0700_windspeed != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0700_windspeed</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="text-right">500</td>
+                                                    @if (@item.Value.surface_isobaric0500_geopotential != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0500_geopotential</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+
+                                                       @if (@item.Value.surface_isobaric0500_temperature != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0500_temperature</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                       @if (@item.Value.surface_isobaric0500_dewpoint != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0500_dewpoint</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                       @if (@item.Value.surface_isobaric0500_wind != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0500_wind</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                       @if (@item.Value.surface_isobaric0500_windspeed != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0500_windspeed</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="text-right">400</td>
+                                                    @if (@item.Value.surface_isobaric0400_geopotential != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0400_geopotential</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+
+                                                       @if (@item.Value.surface_isobaric0400_temperature != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0400_temperature</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                       @if (@item.Value.surface_isobaric0400_dewpoint != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0400_dewpoint</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                       @if (@item.Value.surface_isobaric0400_wind != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0400_wind</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                       @if (@item.Value.surface_isobaric0400_windspeed != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0400_windspeed</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="text-right">300</td>
+                                                    @if (@item.Value.surface_isobaric0300_geopotential != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0300_geopotential</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+
+                                                       @if (@item.Value.surface_isobaric0300_temperature != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0300_temperature</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                       @if (@item.Value.surface_isobaric0300_dewpoint != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0300_dewpoint</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                       @if (@item.Value.surface_isobaric0300_wind != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0300_wind</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                       @if (@item.Value.surface_isobaric0300_windspeed != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0300_windspeed</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="text-right">250</td>
+                                                    @if (@item.Value.surface_isobaric0250_geopotential != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0250_geopotential</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+
+                                                       @if (@item.Value.surface_isobaric0250_temperature != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0250_temperature</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                       @if (@item.Value.surface_isobaric0250_dewpoint != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0250_dewpoint</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                       @if (@item.Value.surface_isobaric0250_wind != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0250_wind</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                       @if (@item.Value.surface_isobaric0250_windspeed != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0250_windspeed</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="text-right">200</td>
+                                                    @if (@item.Value.surface_isobaric0200_geopotential != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0200_geopotential</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+
+                                                       @if (@item.Value.surface_isobaric0200_temperature != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0200_temperature</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                       @if (@item.Value.surface_isobaric0200_dewpoint != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0200_dewpoint</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                       @if (@item.Value.surface_isobaric0200_wind != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0200_wind</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                       @if (@item.Value.surface_isobaric0200_windspeed != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0200_windspeed</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="text-right">150</td>
+                                                    @if (@item.Value.surface_isobaric0150_geopotential != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0150_geopotential</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+
+                                                       @if (@item.Value.surface_isobaric0150_temperature != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0150_temperature</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                       @if (@item.Value.surface_isobaric0150_dewpoint != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0150_dewpoint</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                       @if (@item.Value.surface_isobaric0150_wind != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0150_wind</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                       @if (@item.Value.surface_isobaric0150_windspeed != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0150_windspeed</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="text-right">100</td>
+                                                    @if (@item.Value.surface_isobaric0100_geopotential != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0100_geopotential</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+
+                                                       @if (@item.Value.surface_isobaric0100_temperature != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0100_temperature</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                       @if (@item.Value.surface_isobaric0100_dewpoint != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0100_dewpoint</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                       @if (@item.Value.surface_isobaric0100_wind != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0100_wind</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                       @if (@item.Value.surface_isobaric0100_windspeed != @item.Value.no_data)
+                                                       {
+                                                           <td class="text-right">@item.Value.surface_isobaric0100_windspeed</td>
+                                                       }
+                                                       else
+                                                       {
+                                                           <td class="text-right"><em>@item.Value.no_data</em></td>
+                                                       }
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                  </div>
+                                </div>
+                            </p>
+                        </div> 
+                    </div>
+                </td>
+            </tr>
+            
+            <tr>
+                <td colspan="7" class="hiddenRow">                    
+                    
+                </td>
+            </tr>
+
+            }        
     </tbody>
 </table>
 </div>
