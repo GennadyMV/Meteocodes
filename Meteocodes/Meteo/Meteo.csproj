@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="Common\IRepository.cs" />
     <Compile Include="Common\NHibernateHelper.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SchemaController.cs" />
     <Compile Include="Controllers\StationController.cs" />
     <Compile Include="Global.asax.cs">
@@ -262,6 +263,7 @@
     <Content Include="Views\Station\Index.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Codes\Codes.csproj">

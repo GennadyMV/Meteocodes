@@ -16,7 +16,14 @@
 <div id="sandbox-container">
             <div id="station-report-data" class="input-group date">
                 <span class="input-group-addon">Дата (UTC): </span>
+
                 <input type="text" value="@ViewBag.DateTime" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                <span class="input-group-addon">Срок UTC:</span>
+                <select class="input-sm form-control" onchange="SelectDataValueSrok(this.options[this.selectedIndex].value)">                    
+                        <option value="0">00</option>
+                        <option value="1">08</option>
+                </select>
+
             </div>
 </div>
 
