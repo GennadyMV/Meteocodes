@@ -323,7 +323,86 @@ namespace Parser
                 {
                     break;
                 }
-            } 
+            }
+
+            // Давление на уровне тропопаузе            
+            string tropopause_control = dis.Substring(0, 2);
+            if (tropopause_control != "88")
+            {
+                throw new Exception("35.2.3 Группа не соответствует контрольной цифре 88: " + dis);
+            }
+            string tropopause_presure_str = dis.Substring(2, 3);
+            int tropopause_presure = Convert.ToInt32(tropopause_presure_str);
+            if (tropopause_presure < 100)
+            {
+                tropopause_presure += 1000;
+            }
+            meas.tropopause_pressure = tropopause_presure;
+            meas.Update();
+
+            if (tropopause_control != "88999")
+            {
+                // Температура на уровне тропопаузе
+                index++;
+                dis = rawArray[index];
+                T0T0 = Convert.ToInt32(dis.Substring(0, 2));
+                Ta0 = Convert.ToInt32(dis.Substring(2, 1));
+                meas.tropopause_temperature = (float)T0T0;
+                meas.tropopause_temperature += (float)(Ta0 * 0.1);
+                switch (Ta0)
+                {
+                    case 1:
+                    case 3:
+                    case 5:
+                    case 7:
+                    case 9:
+                        meas.tropopause_temperature *= (float)(-1);
+                        break;
+                }
+                string tropopause_dewpoint_str = dis.Substring(3, 2);
+                if (tropopause_dewpoint_str == "//")
+                {
+                    tropopause_dewpoint_str = "-999";
+                }
+                int tropopause_dewpoint = Convert.ToInt32(tropopause_dewpoint_str);
+                meas.tropopause_dewpoint = (float)tropopause_dewpoint;
+                if (0 <= tropopause_dewpoint && tropopause_dewpoint <= 50)
+                {
+                    meas.tropopause_dewpoint = (float)((float)tropopause_dewpoint * 0.1);
+                }
+                if (56 <= tropopause_dewpoint && tropopause_dewpoint <= 99)
+                {
+                    meas.tropopause_dewpoint = (float)((float)tropopause_dewpoint - 50);
+                }
+
+
+                // Ветер
+                index++;
+                dis = rawArray[index];
+                string tropopause_wind = dis.Substring(0, 2);
+                if (tropopause_wind == "//")
+                {
+                    tropopause_wind = "-999";
+                }
+                string tropopause_windspeed = dis.Substring(2, 3);
+                if (tropopause_windspeed == "///")
+                {
+                    tropopause_windspeed = "-999";
+                }
+
+                int _tropopause_wind = Convert.ToInt32(tropopause_wind);
+                int _tropopause_windspeed = Convert.ToInt32(tropopause_windspeed);
+                meas.tropopause_wind = _tropopause_wind * 10;
+                if (_tropopause_windspeed >= 500)
+                {
+                    _tropopause_windspeed -= 500;
+                    meas.tropopause_wind += 5;
+                }
+                meas.tropopause_windspeed = _tropopause_windspeed;
+
+                meas.Update();
+
+            }
 
             
 

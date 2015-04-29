@@ -25,6 +25,13 @@ namespace Codes.Models
             surface_windspeed =
             surface_windunit =
 
+            tropopause_pressure =
+            tropopause_temperature =
+            tropopause_dewpoint =
+            tropopause_wind =
+            tropopause_windspeed =
+            tropopause_windunit =
+
             surface_isobaric1000_temperature =
             surface_isobaric1000_geopotential =
             surface_isobaric1000_dewpoint =
@@ -187,5 +194,12 @@ namespace Codes.Models
         public string surface_isobaric0100_wind;
         public string surface_isobaric0100_windspeed;
         public string surface_isobaric0100_windunit;
+
+        public string tropopause_pressure;
+        public string tropopause_temperature;
+        public string tropopause_dewpoint;
+        public string tropopause_wind;
+        public string tropopause_windspeed;
+        public string tropopause_windunit;
     }
 }

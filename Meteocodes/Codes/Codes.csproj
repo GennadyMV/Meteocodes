@@ -54,9 +54,11 @@
     <Compile Include="Common\NHibernateHelper.cs" />
     <Compile Include="Domain\Domain.cs" />
     <Compile Include="Meteocode.cs" />
+    <Compile Include="Models\Error.cs" />
     <Compile Include="Models\Measurement.cs" />
     <Compile Include="Models\Station.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ErrorRepository.cs" />
     <Compile Include="Repositories\MeasurementRepository.cs" />
     <Compile Include="Repositories\StationRepository.cs" />
   </ItemGroup>
@@ -68,6 +70,9 @@
     <Content Include="hibernate.cfg.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Mapping\Error.hbm.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Mapping\Measurement.hbm.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>

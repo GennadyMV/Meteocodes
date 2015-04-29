@@ -10,10 +10,10 @@ namespace Test
     {
         static void Main(string[] args)
         {
-           // Parser.Parser.Razdel01(2015, 4, 09, "TTAA 09121 21432 99028 20120 23511 00224 15918 25016 92815 13934 26014 85458 15156 26513 70903 20556 28509 50532 35730 34012 40684 45924 00519 30869 61524 01028 25980 67923 01021 20116 64127 02512 15292 61927 05503 10547 56533 17012 88266 67523 01027 77999=");
-           // return;
+            //Parser.Parser.Razdel01(2015, 4, 09, "TTAA 13001 24688 99925 18756 00000 00150 ///// ///// 92737 ///// ///// 85367 16757 23001 70803 22957 12005 50519 38357 05003 40669 48557 48957 13005 30853 591// ///// 25967 57957 ///// 20109 54559 09505 15293 52761 09005 88303 589// ///// 77999=");
+            //return;
 
-            string[] filePaths = Directory.GetFiles(@"\\192.168.72.123\obmen\Zyryanov\SpecialPoints\data\2015\04", "*_12.txt",
+            string[] filePaths = Directory.GetFiles(@"\\192.168.72.123\obmen\Zyryanov\SpecialPoints\data\2015\04", "*.txt",
                                          SearchOption.AllDirectories);
             int count = 0;
             foreach (var name in filePaths)
@@ -47,8 +47,19 @@ namespace Test
                         int day = Convert.ToInt32(fi.Name.Substring(9, 2));
                         int month = Convert.ToInt32(fi.Name.Substring(11, 2));
                         int year = Convert.ToInt32(fi.Name.Substring(13, 4));
-                        
-                        Parser.Parser.Razdel01(year, month, day, line);
+
+                        try
+                        {
+                            Parser.Parser.Razdel01(year, month, day, line);
+                        }
+                        catch (Exception ex)
+                        {
+                            Codes.Models.Error err = new Codes.Models.Error();
+                            err.Raw = line;
+                            err.Description = ex.Message;
+                            err.Save();
+                            
+                        }
                     }
                 }
 

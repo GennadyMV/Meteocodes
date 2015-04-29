@@ -27,7 +27,7 @@ namespace Meteo.Controllers
 
             if (DD == -1)
             {
-                DD = DateTime.UtcNow.Day;
+                DD = DateTime.UtcNow.AddDays(-1).Day;
             }
             if (GG == -1)
             {
@@ -54,11 +54,11 @@ namespace Meteo.Controllers
                             meas.surface_wind = String.Format("{0, 4}",            measurement.surface_wind);
                             meas.surface_windspeed = String.Format("{0, 4}",       measurement.surface_windspeed);
 
-                            meas.surface_isobaric1000_geopotential = String.Format("{0, 5:N0}", measurement.surface_isobaric1000_geopotential);
-                            meas.surface_isobaric1000_temperature = String.Format("{0, 6:N1}", measurement.surface_isobaric1000_temperature);
-                            meas.surface_isobaric1000_dewpoint = String.Format("{0, 4:N1}", measurement.surface_isobaric1000_dewpoint);
-                            meas.surface_isobaric1000_wind = String.Format("{0, 4}", measurement.surface_isobaric1000_wind);
-                            meas.surface_isobaric1000_windspeed = String.Format("{0, 4}", measurement.surface_isobaric1000_windspeed);
+                            meas.surface_isobaric0850_geopotential = String.Format("{0, 5:N0}", measurement.surface_isobaric0850_geopotential);
+                            meas.surface_isobaric0850_temperature = String.Format("{0, 6:N1}", measurement.surface_isobaric0850_temperature);
+                            meas.surface_isobaric0850_dewpoint = String.Format("{0, 4:N1}", measurement.surface_isobaric0850_dewpoint);
+                            meas.surface_isobaric0850_wind = String.Format("{0, 4}", measurement.surface_isobaric0850_wind);
+                            meas.surface_isobaric0850_windspeed = String.Format("{0, 4}", measurement.surface_isobaric0850_windspeed);
 
                             meas.surface_isobaric0925_geopotential = String.Format("{0, 5:N0}", measurement.surface_isobaric0925_geopotential);
                             meas.surface_isobaric0925_temperature = String.Format("{0, 6:N1}", measurement.surface_isobaric0925_temperature);
@@ -123,6 +123,279 @@ namespace Meteo.Controllers
                             meas.surface_isobaric0100_dewpoint = String.Format("{0, 4:N1}", measurement.surface_isobaric0100_dewpoint);
                             meas.surface_isobaric0100_wind = String.Format("{0, 4}", measurement.surface_isobaric0100_wind);
                             meas.surface_isobaric0100_windspeed = String.Format("{0, 4}", measurement.surface_isobaric0100_windspeed);
+
+                            meas.tropopause_pressure = String.Format("{0, 5:N0}", measurement.tropopause_pressure);
+                            meas.tropopause_temperature = String.Format("{0, 6:N1}", measurement.tropopause_temperature);
+                            meas.tropopause_dewpoint = String.Format("{0, 4:N1}", measurement.tropopause_dewpoint);
+                            meas.tropopause_wind = String.Format("{0, 4}", measurement.tropopause_wind);
+                            meas.tropopause_windspeed = String.Format("{0, 4}", measurement.tropopause_windspeed);
+
+                            string none = "//";
+                            if ((int)measurement.surface_isobaric0850_temperature == -999)
+                            {
+                                meas.surface_isobaric0850_temperature = none;
+                            }
+                            if ((int)measurement.surface_isobaric0850_dewpoint == -999)
+                            {
+                                meas.surface_isobaric0850_dewpoint = none;
+                            }
+
+                            if ((int)measurement.surface_isobaric0850_windspeed == -999)
+                            {
+                                meas.surface_isobaric0850_windspeed = none;
+                            }
+                            if ((int)measurement.surface_isobaric0850_wind == -9990)
+                            {
+                                meas.surface_isobaric0850_wind = none;
+                            }
+                            if ((int)measurement.surface_isobaric0850_geopotential == -999)
+                            {
+                                meas.surface_isobaric0850_geopotential = none;
+                            }
+
+                            if ((int)measurement.surface_isobaric0925_temperature == -999)
+                            {
+                                meas.surface_isobaric0925_temperature = none;
+                            }
+                            if ((int)measurement.surface_isobaric0925_dewpoint == -999)
+                            {
+                                meas.surface_isobaric0925_dewpoint = none;
+                            }
+
+                            if ((int)measurement.surface_isobaric0925_windspeed == -999)
+                            {
+                                meas.surface_isobaric0925_windspeed = none;
+                            }
+                            if ((int)measurement.surface_isobaric0925_wind == -9990)
+                            {
+                                meas.surface_isobaric0925_wind = none;
+                            }
+                            if ((int)measurement.surface_isobaric0925_geopotential == -999)
+                            {
+                                meas.surface_isobaric0925_geopotential = none;
+                            }
+
+                            if ((int)measurement.surface_isobaric0850_temperature == -999)
+                            {
+                                meas.surface_isobaric0850_temperature = none;
+                            }
+                            if ((int)measurement.surface_isobaric0850_dewpoint == -999)
+                            {
+                                meas.surface_isobaric0850_dewpoint = none;
+                            }
+
+                            if ((int)measurement.surface_isobaric0850_windspeed == -999)
+                            {
+                                meas.surface_isobaric0850_windspeed = none;
+                            }
+                            if ((int)measurement.surface_isobaric0850_wind == -9990)
+                            {
+                                meas.surface_isobaric0850_wind = none;
+                            }
+                            if ((int)measurement.surface_isobaric0850_geopotential == -999)
+                            {
+                                meas.surface_isobaric0850_geopotential = none;
+                            }
+
+                            if ((int)measurement.surface_isobaric0700_temperature == -999)
+                            {
+                                meas.surface_isobaric0700_temperature = none;
+                            }
+                            if ((int)measurement.surface_isobaric0700_dewpoint == -999)
+                            {
+                                meas.surface_isobaric0700_dewpoint = none;
+                            }
+
+                            if ((int)measurement.surface_isobaric0700_windspeed == -999)
+                            {
+                                meas.surface_isobaric0700_windspeed = none;
+                            }
+                            if ((int)measurement.surface_isobaric0700_wind == -9990)
+                            {
+                                meas.surface_isobaric0700_wind = none;
+                            }
+                            if ((int)measurement.surface_isobaric0700_geopotential == -999)
+                            {
+                                meas.surface_isobaric0700_geopotential = none;
+                            }
+
+                            if ((int)measurement.surface_isobaric0500_temperature == -999)
+                            {
+                                meas.surface_isobaric0500_temperature = none;
+                            }
+                            if ((int)measurement.surface_isobaric0500_dewpoint == -999)
+                            {
+                                meas.surface_isobaric0500_dewpoint = none;
+                            }
+
+                            if ((int)measurement.surface_isobaric0500_windspeed == -999)
+                            {
+                                meas.surface_isobaric0500_windspeed = none;
+                            }
+                            if ((int)measurement.surface_isobaric0500_wind == -9990)
+                            {
+                                meas.surface_isobaric0500_wind = none;
+                            }
+                            if ((int)measurement.surface_isobaric0500_geopotential == -999)
+                            {
+                                meas.surface_isobaric0500_geopotential = none;
+                            }
+
+                            if ((int)measurement.surface_isobaric0400_temperature == -999)
+                            {
+                                meas.surface_isobaric0400_temperature = none;
+                            }
+                            if ((int)measurement.surface_isobaric0400_dewpoint == -999)
+                            {
+                                meas.surface_isobaric0400_dewpoint = none;
+                            }
+
+                            if ((int)measurement.surface_isobaric0400_windspeed == -999)
+                            {
+                                meas.surface_isobaric0400_windspeed = none;
+                            }
+                            if ((int)measurement.surface_isobaric0400_wind == -9990)
+                            {
+                                meas.surface_isobaric0400_wind = none;
+                            }
+                            if ((int)measurement.surface_isobaric0400_geopotential == -999)
+                            {
+                                meas.surface_isobaric0400_geopotential = none;
+                            }
+
+                            if ((int)measurement.surface_isobaric0300_temperature == -999)
+                            {
+                                meas.surface_isobaric0300_temperature = none;
+                            }
+                            if ((int)measurement.surface_isobaric0300_dewpoint == -999)
+                            {
+                                meas.surface_isobaric0300_dewpoint = none;
+                            }
+
+                            if ((int)measurement.surface_isobaric0300_windspeed == -999)
+                            {
+                                meas.surface_isobaric0300_windspeed = none;
+                            }
+                            if ((int)measurement.surface_isobaric0300_wind == -9990)
+                            {
+                                meas.surface_isobaric0300_wind = none;
+                            }
+                            if ((int)measurement.surface_isobaric0300_geopotential == -999)
+                            {
+                                meas.surface_isobaric0300_geopotential = none;
+                            }
+
+                            if ((int)measurement.surface_isobaric0250_temperature == -999)
+                            {
+                                meas.surface_isobaric0250_temperature = none;
+                            }
+                            if ((int)measurement.surface_isobaric0250_dewpoint == -999)
+                            {
+                                meas.surface_isobaric0250_dewpoint = none;
+                            }
+
+                            if ((int)measurement.surface_isobaric0250_windspeed == -999)
+                            {
+                                meas.surface_isobaric0250_windspeed = none;
+                            }
+                            if ((int)measurement.surface_isobaric0250_wind == -9990)
+                            {
+                                meas.surface_isobaric0250_wind = none;
+                            }
+                            if ((int)measurement.surface_isobaric0250_geopotential == -999)
+                            {
+                                meas.surface_isobaric0250_geopotential = none;
+                            }
+
+                            if ((int)measurement.surface_isobaric0200_temperature == -999)
+                            {
+                                meas.surface_isobaric0200_temperature = none;
+                            }
+                            if ((int)measurement.surface_isobaric0200_dewpoint == -999)
+                            {
+                                meas.surface_isobaric0200_dewpoint = none;
+                            }
+
+                            if ((int)measurement.surface_isobaric0200_windspeed == -999)
+                            {
+                                meas.surface_isobaric0200_windspeed = none;
+                            }
+                            if ((int)measurement.surface_isobaric0200_wind == -9990)
+                            {
+                                meas.surface_isobaric0200_wind = none;
+                            }
+                            if ((int)measurement.surface_isobaric0200_geopotential == -999)
+                            {
+                                meas.surface_isobaric0200_geopotential = none;
+                            }
+
+                            if ((int)measurement.surface_isobaric0150_temperature == -999)
+                            {
+                                meas.surface_isobaric0150_temperature = none;
+                            }
+                            if ((int)measurement.surface_isobaric0150_dewpoint == -999)
+                            {
+                                meas.surface_isobaric0150_dewpoint = none;
+                            }
+
+                            if ((int)measurement.surface_isobaric0150_windspeed == -999)
+                            {
+                                meas.surface_isobaric0150_windspeed = none;
+                            }
+                            if ((int)measurement.surface_isobaric0150_wind == -9990)
+                            {
+                                meas.surface_isobaric0150_wind = none;
+                            }
+                            if ((int)measurement.surface_isobaric0150_geopotential == -999)
+                            {
+                                meas.surface_isobaric0150_geopotential = none;
+                            }
+
+                            if ((int)measurement.surface_isobaric0100_temperature == -999)
+                            {
+                                meas.surface_isobaric0100_temperature = none;
+                            }
+                            if ((int)measurement.surface_isobaric0100_dewpoint == -999)
+                            {
+                                meas.surface_isobaric0100_dewpoint = none;
+                            }
+
+                            if ((int)measurement.surface_isobaric0100_windspeed == -999)
+                            {
+                                meas.surface_isobaric0100_windspeed = none;
+                            }
+                            if ((int)measurement.surface_isobaric0100_wind == -9990)
+                            {
+                                meas.surface_isobaric0100_wind = none;
+                            }
+                            if ((int)measurement.surface_isobaric0100_geopotential == -999)
+                            {
+                                meas.surface_isobaric0100_geopotential = none;
+                            }
+
+                            if ((int)measurement.tropopause_temperature == -999)
+                            {
+                                meas.tropopause_temperature = none;
+                            }
+                            if ((int)measurement.tropopause_dewpoint == -999)
+                            {
+                                meas.tropopause_dewpoint = none;
+                            }
+
+                            if ((int)measurement.tropopause_windspeed == -999)
+                            {
+                                meas.tropopause_windspeed = none;
+                            }
+                            if ((int)measurement.tropopause_wind == -9990)
+                            {
+                                meas.tropopause_wind = none;
+                            }
+
+                            if ((int)measurement.tropopause_dewpoint == -999)
+                            {
+                                meas.tropopause_dewpoint = none;
+                            }
+
                         }
                         MeasurementData.Add(station.Code.ToString(), meas);
                     }                  

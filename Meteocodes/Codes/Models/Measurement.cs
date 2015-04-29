@@ -100,6 +100,12 @@ namespace Codes.Models
         public virtual int surface_isobaric0100_wind { get; set; }
         public virtual int surface_isobaric0100_windspeed { get; set; }
         public virtual int surface_isobaric0100_windunit { get; set; }
+
+        public virtual int tropopause_pressure { get; set; }
+        public virtual float tropopause_temperature { get; set; }
+        public virtual float tropopause_dewpoint { get; set; }
+        public virtual int tropopause_wind { get; set; }
+        public virtual int tropopause_windspeed { get; set; }
         
         public virtual void Save()
         {

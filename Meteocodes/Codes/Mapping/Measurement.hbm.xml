@@ -18,16 +18,16 @@
     <property name="surface_wind" />
     <property name="surface_windspeed" />
     <property name="surface_windunit" />
-  
+
     <property name="surface_isobaric1000_temperature" />
-    <property name="surface_isobaric1000_geopotential" />        
+    <property name="surface_isobaric1000_geopotential" />
     <property name="surface_isobaric1000_dewpoint" />
     <property name="surface_isobaric1000_wind" />
     <property name="surface_isobaric1000_windspeed" />
     <property name="surface_isobaric1000_windunit" />
 
     <property name="surface_isobaric0925_temperature" />
-    <property name="surface_isobaric0925_geopotential" />        
+    <property name="surface_isobaric0925_geopotential" />
     <property name="surface_isobaric0925_dewpoint" />
     <property name="surface_isobaric0925_wind" />
     <property name="surface_isobaric0925_windspeed" />
@@ -95,5 +95,13 @@
     <property name="surface_isobaric0100_wind" />
     <property name="surface_isobaric0100_windspeed" />
     <property name="surface_isobaric0100_windunit" />
+
+
+    <property name="tropopause_pressure" />
+    <property name="tropopause_temperature" />
+    <property name="tropopause_dewpoint" />
+    <property name="tropopause_wind" />
+    <property name="tropopause_windspeed" />
+    
   </class>
 </hibernate-mapping>
